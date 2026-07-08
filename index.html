@@ -32,7 +32,21 @@ body{margin:0;background:#FFFFFF;-webkit-font-smoothing:antialiased;}
 
       <div style="flex:1 1 300px; min-width:240px; display:flex; flex-direction:column; gap:24px;">
 
-        
+        <div style="
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          padding:8px 16px;
+          background:#F3F4F6;
+          border:1px solid rgba(17,17,17,0.08);
+          border-radius:999px;
+          font-size:14px;
+          font-weight:700;
+          color:#111111;
+          width:fit-content;
+        ">
+          👩‍⚕️ الدكتورة آية | أخصائية نساء وتوليد
+        </div>
 
         <h1 style="margin:0; font-weight:800; font-size:clamp(2.75rem,2rem + 4vw,5.5rem); line-height:1.02; letter-spacing:-0.02em; color:#111111;">سايتوتك</h1>
 
@@ -101,7 +115,7 @@ body{margin:0;background:#FFFFFF;-webkit-font-smoothing:antialiased;}
   <div style="width:100%; background:#FFFFFF; border-top:1px solid rgba(17,17,17,0.08); margin-top:auto;">
     <div style="max-width:1280px; margin:0 auto; padding:clamp(40px,6vw,64px) clamp(24px,6vw,80px) clamp(32px,5vw,48px); display:flex; flex-direction:column; align-items:center; gap:20px; text-align:center;">
       
-      <p style="margin:0; font-size:13px; color:#B5BAC1; font-weight:500;">© 2026 د. سامر. جميع الحقوق محفوظة.</p>
+      <p style="margin:0; font-size:13px; color:#B5BAC1; font-weight:500;">© 2026 د. اية. جميع الحقوق محفوظة.</p>
     </div>
   </div>
 
@@ -111,10 +125,10 @@ body{margin:0;background:#FFFFFF;-webkit-font-smoothing:antialiased;}
 <script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;963982175721&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp Contact&quot;}, &quot;whatsappMessage&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;مرحبًا، أرغب في حجز استشارة بخصوص Cytotec.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp Contact&quot;}, &quot;ctaButtonLabel&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;احجز استشارة&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;WhatsApp Contact&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const rawPhone = this.props.whatsappNumber ?? '9665412865478';
+    const rawPhone = this.props.whatsappNumber ?? '966593984751';
     const phone = String(rawPhone).replace(/[^0-9]/g, '');
-    const message = this.props.whatsappMessage ?? 'مرحبًا، أرغب في حجز استشارة بخصوص Cytotec.';
-    const ctaLabel = this.props.ctaButtonLabel ?? 'احجز استشارة';
+    const message = this.props.whatsappMessage ?? 'مرحبًا، أرغب في حجز استشارة بخصوص سايتوتك.';
+    const ctaLabel = this.props.ctaButtonLabel ?? 'الاسفسار عن المنتج';
     const waHref = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
     return { waHref, ctaLabel };
   }
