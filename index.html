@@ -1,261 +1,416 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>سايتوتك</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-/* إعدادات عامة */
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: 'Cairo', sans-serif;
-  background: #FFFFFF;
-  color: #111111;
-  -webkit-font-smoothing: antialiased;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* التنسيقات الهيكلية */
-.main-wrapper { width: 100%; background: #FFFFFF; }
-.hero-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: clamp(64px,10vw,128px) clamp(24px,6vw,80px) clamp(56px,8vw,112px);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(24px,4vw,64px);
-}
-.hero-text {
-  flex: 1 1 300px;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.badge-title {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: #F3F4F6;
-  border: 1px solid rgba(17,17,17,0.08);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 700;
-  width: fit-content;
-}
-.hero-title {
-  margin: 0;
-  font-weight: 800;
-  font-size: clamp(2.75rem,2rem + 4vw,5.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-}
-.hero-desc {
-  margin: 0;
-  max-width: 460px;
-  font-size: clamp(1.05rem,1rem + 0.3vw,1.25rem);
-  line-height: 1.65;
-  color: #5B5F66;
-}
-.cta-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: flex-start;
-  margin-top: 8px;
-}
-.btn-primary {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  column-gap: 12px;
-  row-gap: 4px;
-  background: #25D366;
-  color: #FFFFFF;
-  padding: 22px clamp(20px,5vw,40px);
-  border-radius: 16px;
-  font-weight: 700;
-  font-size: clamp(0.95rem,0.9rem + 0.3vw,1.05rem);
-  text-decoration: none;
-  box-shadow: 0 16px 32px -12px rgba(37,211,102,0.5);
-  transition: background 0.2s;
-}
-.btn-primary:hover { background: #1FBE5C; }
-.disclaimer-text {
-  margin: 0;
-  font-size: 13px;
-  color: #8A8F98;
-  font-weight: 500;
-}
-.hero-img-wrapper {
-  flex: 1 1 260px;
-  min-width: 200px;
-  display: flex;
-  justify-content: center;
-}
-.hero-img {
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 4/5;
-  border-radius: 16px;
-  box-shadow: 0 24px 48px -24px rgba(17,17,17,0.18);
-  background: url("bg.jpg") center / contain no-repeat;
-}
-
-.info-wrapper { width: 100%; background: #F7F7F7; }
-.info-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: clamp(64px,10vw,112px) clamp(24px,6vw,80px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 40px;
-}
-.info-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-}
-.info-title {
-  margin: 0;
-  font-weight: 800;
-  font-size: clamp(1.75rem,1.5rem + 1.5vw,2.75rem);
-  color: #111111;
-}
-.info-desc {
-  margin: 0;
-  max-width: 480px;
-  font-size: clamp(1rem,0.95rem + 0.3vw,1.15rem);
-  line-height: 1.6;
-  color: #5B5F66;
-}
-.features-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-}
-.feature-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  min-width: 112px;
-}
-.feature-icon-box {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid rgba(17,17,17,0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(17,17,17,0.05);
-}
-.feature-text { font-size: 13px; font-weight: 600; color: #111111; }
-.footer-wrapper {
-  width: 100%;
-  background: #FFFFFF;
-  border-top: 1px solid rgba(17,17,17,0.08);
-  margin-top: auto;
-}
-.footer-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: clamp(40px,6vw,64px) clamp(24px,6vw,80px) clamp(32px,5vw,48px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
-}
-.footer-text { margin: 0; font-size: 13px; color: #B5BAC1; font-weight: 500; }
-</style>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18299607475"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'AW-18299607475');
-</script>
-</head>
-<body>
-
-<main class="main-wrapper">
-  <div class="hero-container">
-    <div class="hero-text">
-      <div class="badge-title">👩‍⚕️ الدكتورة آية | أخصائية نساء وتوليد</div>
-      <h1 class="hero-title">سايتوتك</h1>
-      <p class="hero-desc">دواء سايتوتك متوفر حصريًا من خلال التواصل مع الدكتورة آية. تتم مراجعة كل طلب بشكل فردي، يُقدَّم العلاج المناسب لحالتك.</p>
-      <div class="cta-wrapper">
-        <a href="https://wa.me/966593984751?text=السلام+عليكم،+اريد+الأسفسار+عن+المنتج" rel="noopener noreferrer" class="btn-primary" onclick="gtag('event', 'conversion', {'send_to': 'AW-18299607475/QLbFCNnHxM8cELOz95VE'});">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.39 1.19 4.53 3.08 6.02-.11.9-.44 2.13-1.28 3.36a.5.5 0 0 0 .55.77c1.9-.55 3.31-1.36 4.16-1.95A11.6 11.6 0 0 0 12 19c4.97 0 9-3.58 9-8s-4.03-8-9-8Z" fill="#FFFFFF"></path></svg>
-          الاستفسار عن المنتج
-        </a>
-      </div>
-    </div>
-    <div class="hero-img-wrapper">
-      <div class="hero-img"></div>
-    </div>
-  </div>
-</main>
-
-<section class="info-wrapper">
-  <div class="info-container">
-    <div class="info-header">
-      <h2 class="info-title">هل تحتاج إلى مزيد من المعلومات؟</h2>
-      <p class="info-desc">تواصل معنا عبر واتساب للحصول على جميع التفاصيل.</p>
-    </div>
+<html lang="ar" dir="rtl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <a href="https://wa.me/966593984751?text=السلام+عليكم،+اريد+الأسفسار+عن+المنتج" rel="noopener noreferrer" class="btn-primary" onclick="gtag('event', 'conversion', {'send_to': 'AW-18299607475/QLbFCNnHxM8cELOz95VE'});">
-      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.39 1.19 4.53 3.08 6.02-.11.9-.44 2.13-1.28 3.36a.5.5 0 0 0 .55.77c1.9-.55 3.31-1.36 4.16-1.95A11.6 11.6 0 0 0 12 19c4.97 0 9-3.58 9-8s-4.03-8-9-8Z" fill="#FFFFFF"></path></svg>
-      اطلب المنتج
-    </a>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>سايتوتك في السعودية | الموقع الرسمي لحبوب سايتوتك</title>
+    
+    <!-- علامات ميتا للـ SEO -->
+    <meta name="description" content="الموقع الرسمي لحبوب سايتوتك في السعودية. توصيل سريع وآمن لجميع مدن المملكة: الرياض، جدة، الدمام. منتجات أصلية 100% مع ضمان الخصوصية والدفع عند الاستلام.">
+    <meta name="keywords" content="سايتوتك في السعودية, حبوب سايتوتك, سايتوتك للبيع, سايتوتك في الرياض, سايتوتك في جدة, سايتوتك في الدمام, حبوب الإجهاض, ميزوبروستول, الدفع عند الاستلام, توصيل سريع">
+    
+    <!-- علامات ميتا للشبكات الاجتماعية -->
+    <link rel="canonical" href="https:/cytotec.com/">
+    <meta property="og:title" content="سايتوتك في السعودية | الموقع الرسمي والأول لحبوب سايتوتك">
+    <meta property="og:description" content="الموقع الرسمي لحبوب سايتوتك في السعودية. توصيل سريع وآمن لجميع مدن المملكة مع ضمان الخصوصية والدفع عند الاستلام.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https:/cytotec.com">
+    <meta property="og:type" content="website">
+    
+    <!-- علامات ميتا للجوال -->
+    <meta name="theme-color" content="#25d366">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- روابط الرمز المفضل (Favicon) -->
+    <link rel="icon" type="image/x-icon" href="https:/cytotec.com/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="https:/cytotec.com/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https:/cytotec.com/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="https:/cytotec.com/favicon/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="https:/cytotec.com/favicon/favicon-64x64.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https:/cytotec.com/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="https:/cytotec.com/favicon/site.webmanifest">
+    
+    <!-- ربط ملف CSS -->
+    <link rel="stylesheet" href="files/styles.css">
+    
+    <!-- تحميل الخطوط بشكل متأخر لتحسين الأداء -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    
+    <!-- تحميل Font Awesome بشكل متأخر لتحسين الأداء -->
+    <link rel="stylesheet" href="files/all.min.css">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- تحميل الخطوط العربية بشكل متأخر -->
+    <link rel="stylesheet" href="files/css2" as="style">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap"></noscript>
+    
+    <!-- البيانات المنظمة لتحسين SEO -->
+    <script async="" src="files/ub3usufvgk"></script><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "سايتوتك السعودية",
+      "image": "logo.png",
+      "url": "https:/cytotec.com",
+      "telephone": "+966593984751",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Saudi Arabia"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.7136",
+        "longitude": "46.6753"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": [
+        "https://www.facebook.com/saytotechsaudi",
+        "https://www.instagram.com/saytotechsaudi"
+      ]
+    }
+    </script>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon-box">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#25D366" stroke-width="2"></circle><path d="M12 7v5l3.5 2" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<style>
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .scrolled {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style><link rel="stylesheet" href="files/css2"><link rel="stylesheet" href="files/all.min.css"></head>
+<body>
+    <!-- رأس الصفحة والشعار -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="files/logo.png" alt="شعار سايتوتك السعودية" width="60" height="60">
+                <p class="logo-text">سايتوتك السعودية</p>
+            </div>
         </div>
-        <span class="feature-text">استجابة سريعة</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon-box">
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="#25D366" stroke-width="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#25D366" stroke-width="2" stroke-linecap="round"></path></svg>
+    </header>
+
+    <!-- قسم hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>سايتوتك في السعودية</h1>
+            <p>الحل الآمن والموثوق للنساء في المملكة العربية السعودية. توصيل سريع وسري لجميع المدن مع ضمان الخصوصية التامة.</p>
+            <a href="https://wa.me/966593984751" class="cta-btn">طلب دواء الآن</a>
         </div>
-        <span class="feature-text">تواصل آمن</span>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon-box">
-          <span aria-hidden="true" style="font-size:12px; font-weight:800; color:#25D366; letter-spacing:-0.02em;">24/7</span>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>لماذا تختارنا؟</h2>
+                <p>نقدم لك أفضل الخدمات بأعلى معايير الجودة والأمان</p>
+            </div>
+            
+             <div class="features-grid">
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>جودة أصلية تثقون بها</h3>
+                    <p>كل منتج يمر بفحص دقيق قبل وصوله إليك، لضمان الأصالة في كل مرة.</p>
+                </div>
+                
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>سرعة في التوصيل، أمان في الوصول</h3>
+                    <p>طلبك بين يديك خلال 24 إلى 48 ساعة فقط، إلى أي منطقة في المملكة.</p>
+                </div>
+                
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>ادفع عند الاستلام فقط</h3>
+                    <p>لا حاجة لأي دفع مسبق، تأكد من المنتج أولًا ثم أكمل الدفع بكل راحة.</p>
+                </div>
+                
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>استشارتك الطبية على حسابنا</h3>
+                    <p>الدكتورة آية وفريقها الطبي متواجدون على مدار الساعة للإجابة عن كل استفساراتك.</p>
+                </div>
+                
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>خصوصيتك في أمان تام</h3>
+                    <p>بياناتك وطلبك سر بيننا، من لحظة الطلب وحتى وصوله إليك.</p>
+                </div>
+                
+                <div class="feature-card scroll-animation">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>بخدمتك ليل نهار</h3>
+                    <p>فريقنا جاهز للرد على كل سؤال ومساعدتك في أي وقت، بدون استثناء.</p>
+                </div>
+            </div>
         </div>
-        <span class="feature-text">دعم على مدار الساعة</span>
-      </div>
+    </section>
+
+    <!-- قسم about -->
+    <section class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>من نحن</h2>
+                <p>تعرف على صيدلية سايتوتك السعودية</p>
+            </div>
+            
+            <div class="about-content scroll-animation">
+                <div class="about-text">
+                    <h3>صيدلية سايتوتك السعودية</h3>
+                    <p>
+                        نحن صيدلية متخصصة في توفير حبوب سايتوتك الأصلية للنساء في المملكة العربية السعودية. نسعى جاهدين لتقديم خدمة موثوقة وآمنة، مع الحفاظ على أعلى معايير الجودة والسرية.
+                    </p>
+                    <p>
+                        يقود فريقنا الطبي الدكتورة آية، وهي صيدلانية متخصصة في الأدوية النسائية وإدارة الأزمات الصحية. نحن نؤمن بأن الوصول إلى الرعاية الصحية الجيدة حق أساسي لكل امرأة.
+                    </p>
+                </div>  
+                <img src="files/about-image.jpg" data-src="files/about-image.jpg" alt="فريق سايتوتك السعودية" class="about-image lazy-load">            
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المنتجات -->
+<section class="products">
+    <div class="container">
+        <div class="section-title">
+            <h2>منتجاتنا</h2>
+            <p>مجموعة متنوعة من المنتجات الطبية عالية الجودة</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card scroll-animation">
+                <div class="feature-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <h3>سايتوتك 200 ميكروغرام</h3>
+                <p>حبوب سايتوتك الأصلية من شركة فايزر، تحتوي على المادة الفعالة ميزوبروستول بتركيز 200 ميكروغرام.</p>
+                <a href="https://wa.me/966593984751" class="product-btn">عرض التفاصيل</a>
+            </div>
+            
+            <div class="feature-card scroll-animation">
+                <div class="feature-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h3>باقة سايتوتك الكاملة</h3>
+                <p>باقة متكاملة تشمل حبوب سايتوتك الأصلية مع مسكنات الألم ودليل استخدام مفصل واستشارة طبية مجانية.</p>
+                <a href="https://wa.me/966593984751" class="product-btn">عرض التفاصيل</a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<footer class="footer-wrapper">
-  <div class="footer-container">
-    <p class="footer-text">© 2026 د. آية. جميع الحقوق محفوظة.</p>
-  </div>
-</footer>
+
+    <!-- قسم الشهادات -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>آراء عملائنا</h2>
+                <p>ماذا يقول عملاؤنا عن خدماتنا</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card scroll-animation">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">
+                        كنت قلقة جداً عندما قررت طلب حبوب سايتوتك عبر الإنترنت، لكن تجربتي مع صيدلية سايتوتك السعودية كانت ممتازة من البداية إلى النهاية. الدكتورة آية كانت متواجدة دائماً للإجابة على أسئلتي، والتوصيل كان سريعاً وسرياً تماماً.
+                    </p>
+                    <p class="testimonial-author">سارة م. - الرياض</p>
+                </div>
+                
+                <div class="testimonial-card scroll-animation">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">
+                        تواصلت مع فريق سايتوتك السعودية عبر الواتساب، وكانت الاستجابة سريعة جداً. شرحوا لي كل شيء بالتفصيل وأجابوا على جميع أسئلتي. وصل المنتج في اليوم التالي، وكان مغلفاً بشكل سري تماماً.
+                    </p>
+                    <p class="testimonial-author">نورة ع. - جدة</p>
+                </div>
+                
+                <div class="testimonial-card scroll-animation">
+                    <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+                    <p class="testimonial-text">
+                        أشكر فريق سايتوتك السعودية على الخدمة الممتازة. كنت في وضع صعب وكنت بحاجة إلى حل سريع وآمن. ساعدوني في اختيار المنتج المناسب وشرحوا لي كيفية استخدامه بالتفصيل.
+                    </p>
+                    <p class="testimonial-author">ريم ك. - الدمام</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسئلة الشائعة -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على الأسئلة الأكثر شيوعاً</p>
+            </div>
+            
+            <div class="faq-item active">
+                <div class="faq-question">
+                    ما هو سايتوتك (Cytotec)؟
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>سايتوتك (Cytotec) هو الاسم التجاري لدواء يحتوي على المادة الفعالة ميزوبروستول (Misoprostol)، وهي مادة اصطناعية مشابهة لهرمون البروستاجلاندين. يستخدم سايتوتك في الأصل لعلاج قرحة المعدة، ولكنه يستخدم أيضاً في الإجهاض الطبي لقدرته على تحفيز انقباضات الرحم.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    كيف يمكنني طلب حبوب سايتوتك؟
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>يمكنك طلب حبوب سايتوتك من خلال عدة طرق:</p>
+                    <ol>
+                        <li><strong>واتساب:</strong> تواصل معنا مباشرة على الرقم 966593984751</li>
+                        <li><strong>نموذج الاتصال:</strong> املأ نموذج الاتصال في صفحة "اتصل بنا" على موقعنا</li>
+                        <li><strong>البريد الإلكتروني:</strong> أرسل طلبك إلى support@cytotec.com</li>
+                    </ol>
+                    <p>سيقوم فريقنا بالرد عليك في أقرب وقت ممكن لتأكيد طلبك وترتيب عملية التوصيل.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    هل التوصيل متاح لجميع مناطق المملكة؟
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>نعم، نوفر خدمة التوصيل لجميع مناطق المملكة العربية السعودية، بما في ذلك المدن الرئيسية مثل الرياض، جدة، الدمام، مكة المكرمة، المدينة المنورة، تبوك، أبها، وغيرها. كما نوفر خدمة التوصيل لدول الخليج الأخرى مثل <a href="https://cytotecuae.net/" target="_blank">الإمارات</a> و <a href="https://cytotec-emirates.net/" target="_blank">دبي</a>، <a href="https://cytotec-kuwait.com/" target="_blank">الكويت</a>، <a href="https://cytotec-in-oman.com/" target="_blank">عمان</a>، و <a href="https://cytotec-in-qatar.com/" target="_blank">قطر</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>اتصل بنا</h2>
+                <p>نحن هنا لمساعدتك في أي وقت</p>
+            </div>
+            
+            <div class="contact-content scroll-animation">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h3>واتساب</h3>
+                            <p>+966593984751</p>
+                            <p>متاح 24/7</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>البريد الإلكتروني</h3>
+                            <p>support@cytotec.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>العنوان</h3>
+                            <p>المملكة العربية السعودية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="files/logo.png" alt="شعار سايتوتك السعودية" width="60" height="60">
+                    <p>الوصول إلى الرعاية الصحية بسهولة وثقة في جميع أنحاء المملكة العربية السعودية.</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>معلومات التواصل</h4>
+                    <p><i class="fas fa-phone"></i> واتساب: +966593984751</p>
+                    <p><i class="fas fa-envelope"></i> البريد: support@cytotec.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> العنوان: المملكة العربية السعودية</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2025 سايتوتك السعودية</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر WhatsApp العائم -->
+    <div id="whatsapp-button" class="whatsapp-icon show" aria-label="تواصل عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- نافذة الدردشة المنبثقة -->
+    <div id="chat-popup" class="chat-popup">
+        <div class="chat-header">
+            <button class="close-btn" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+            <img src="files/logo.png" alt="شعار سايتوتك السعودية" class="chat-logo" width="40" height="40">
+            <div class="chat-info">
+                <h3>الدكتورة آية</h3>
+                <p>متصل الآن</p>
+            </div>
+        </div>
+        <div class="chat-messages">
+            <div class="message received">
+                <p>مرحبًا! كيف يمكنني مساعدتك اليوم؟</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="اكتب رسالتك هنا..." aria-label="اكتب رسالتك">
+            <button class="send-btn" aria-label="إرسال"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- تحميل الصور مسبقاً لتحسين الأداء -->
+    <div class="preload-image">
+        <img src="files/hero-bg.jpg" alt="خلفية موقع سايتوتك السعودية - حبوب سايتوتك الأصلية" aria-hidden="true">
+    </div>
+
+    <!-- ربط ملف JavaScript -->
+    <script src="files/script.js.download" defer=""></script>
 
 </body>
 </html>
