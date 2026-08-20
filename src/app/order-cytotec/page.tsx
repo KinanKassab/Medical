@@ -1,11 +1,8 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
 import { OrderWorkflow } from '@/components/OrderWorkflow'
 import { PageHero } from '@/components/PageHero'
-import { TrustSection } from '@/components/TrustSection'
 import { WhatsAppOrderCta } from '@/components/WhatsAppOrderCta'
 import {
-  canClaimLicensedEstablishment,
   displayOrganizationName,
   getOrganization,
   officialWhatsappOrderUrl,
@@ -13,15 +10,14 @@ import {
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'طلب سايتوتك (ميزوبروستول) عبر واتساب',
+  title: 'طلب سايتوتك عبر واتساب',
   description:
-    'اطلب سايتوتك (ميزوبروستول) عبر واتساب من cytotc.com. الرسالة تبدأ الاستفسار فقط؛ التحقق من الوصفة والتوفر والاعتماد والدفع تتم مع فريق المنشأة.',
+    'اطلب سايتوتك عبر واتساب من cytotc.com. الرسالة تبدأ الاستفسار فقط؛ التحقق من الوصفة والتوفر والاعتماد والدفع تتم مع فريق المنشأة.',
   path: '/order-cytotec',
 })
 
 export default function OrderPage() {
   const org = getOrganization()
-  const licensed = canClaimLicensedEstablishment(org)
   const hasWhatsapp = Boolean(officialWhatsappOrderUrl())
 
   return (
@@ -35,7 +31,7 @@ export default function OrderPage() {
         />
       </div>
       <PageHero
-        title="طلب سايتوتك (ميزوبروستول) عبر واتساب"
+        title="طلب سايتوتك عبر واتساب"
         lead={`${displayOrganizationName(org)} يستقبل طلبات هذا الدواء عبر واتساب. إرسال الرسالة لا يعني بيعًا أو صرفًا تلقائيًا.`}
       />
       <section className="content-section">
@@ -51,13 +47,12 @@ export default function OrderPage() {
             )}
           </div>
           <article className="prose-page">
-            <MedicalDisclaimer compact />
+            
             <h2>هوية الدواء</h2>
             <p>
-              سايتوتك اسم تجاري شائع لأقراص تحتوي المادة الفعالة ميزوبروستول.
+              سايتوتك اسم تجاري شائع لأقراص تحتوي المادة الفعالة.
               هذا الموقع ليس الموقع الرسمي لشركة فايزر. راجع{' '}
-              <a href="/drug-information">معلومات الدواء</a> و{' '}
-              <a href="/safety">تحذيرات السلامة</a> قبل بدء الطلب.
+              <a href="/drug-information">معلومات الدواء</a> قبل بدء الطلب.
             </p>
             {org.registeredPresentation ? (
               <p>
@@ -95,7 +90,7 @@ export default function OrderPage() {
             <h2>المتطلبات التنظيمية</h2>
             {org.prescriptionRequired ? (
               <p>
-                ميزوبروستول يُعامل هنا كدواء قد يستلزم تحققًا من الوصفة أو ما
+                يُعامل هنا كدواء قد يستلزم تحققًا من الوصفة أو ما
                 يعادلها قبل الصرف. فريق المنشأة يتولى هذا التحقق بعد رسالة
                 واتساب. الرسالة وحدها لا تتجاوز المراجعة النظامية.
               </p>
@@ -111,16 +106,12 @@ export default function OrderPage() {
             <p>
               واتساب يبدأ الطلب فقط. لا يوجد شراء فوري من الموقع، ولا يعني فتح
               المحادثة موافقة على الصرف.
-              {licensed
-                ? ' بيانات الترخيص أدناه.'
-                : ' صفة المنشأة المرخّصة تُعرض بعد اكتمال بيانات الترخيص.'}
             </p>
             {hasWhatsapp ? (
               <div className="cta-row" style={{ justifyContent: 'flex-start' }}>
                 <WhatsAppOrderCta location="order-page-bottom" />
               </div>
             ) : null}
-            <TrustSection heading="المنشأة المستلمة للطلب" />
           </article>
         </div>
       </section>

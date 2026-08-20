@@ -47,7 +47,7 @@ export function TrustBar({
               {formatDate(medicallyReviewedAt)}
             </time>
           ) : (
-            'لم تُراجع بعد من مختص مرخّص موثّق على الموقع'
+            'لم تُراجع بعد'
           )}
         </dd>
       </div>

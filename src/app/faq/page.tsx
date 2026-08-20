@@ -1,7 +1,6 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { JsonLd } from '@/components/JsonLd'
-import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
 import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
 import { getFaqItems } from '@/content/faq'
@@ -9,9 +8,9 @@ import { createMetadata } from '@/lib/seo'
 import { absoluteUrl } from '@/lib/site'
 
 export const metadata = createMetadata({
-  title: 'الأسئلة الشائعة عن سايتوتك وميزوبروستول',
+  title: 'الأسئلة الشائعة عن سايتوتك ',
   description:
-    'كيف تطلب سايتوتك عبر cytotc.com، وهل الوصفة لازمة، وهل الموقع رسمي لفايزر، وكيف تتحقق من المنشأة ومن الدواء في السعودية.',
+    'كيف تطلب سايتوتك عبر cytotc.com، وهل الوصفة لازمة، وهل الموقع رسمي لفايزر.',
   path: '/faq',
 })
 
@@ -44,17 +43,16 @@ export default function FaqPage() {
       </div>
       <PageHero
         title="الأسئلة الشائعة"
-        lead="إجابات عن الطلب المنظّم، والترخيص عند توفره، ومعلومات ميزوبروستول."
+        lead="إجابات عن طلب سايتوتك ومعلومات الدواء."
       />
       <section className="faq-section">
         <div className="container">
-          <MedicalDisclaimer compact />
+          
           <FaqAccordion items={items} />
           <p>
             ابدأ من{' '}
             <a href="/order-cytotec">طلب سايتوتك</a> أو اقرأ{' '}
-            <a href="/drug-information">معلومات الدواء</a> و{' '}
-            <a href="/safety">صفحة السلامة</a>.
+            <a href="/drug-information">معلومات الدواء</a>.
           </p>
           <OrderCta />
         </div>

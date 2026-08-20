@@ -15,7 +15,7 @@ export function WhatsAppButton() {
   return (
     <WhatsAppOrderButton
       href={href}
-      className="whatsapp-icon show"
+      className="whatsapp-icon"
       location="floating"
     >
       <span className="sr-only">طلب الدواء عبر واتساب</span>

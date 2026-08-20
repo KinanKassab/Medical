@@ -4,7 +4,6 @@ import { Analytics } from '@/components/Analytics'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { JsonLd } from '@/components/JsonLd'
-import { SkipLink } from '@/components/SkipLink'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/jsonld'
 import { SITE } from '@/lib/site'
@@ -26,7 +25,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'طلب سايتوتك (ميزوبروستول) ومعلومات الدواء | cytotc.com',
+    default: 'طلب سايتوتك ومعلومات الدواء | cytotc.com',
     template: '%s | cytotc.com',
   },
   description: SITE.shortDescription,
@@ -74,7 +73,6 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={cairo.variable}>
       <body className={cairo.className}>
-        <SkipLink />
         <JsonLd data={websiteJsonLd()} />
         <JsonLd data={organizationJsonLd()} />
         <Header />

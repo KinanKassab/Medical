@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import { WhatsAppOrderCta } from '@/components/WhatsAppOrderCta'
-import { FOOTER_INFO_LINKS, FOOTER_TRUST_LINKS } from '@/lib/nav'
+import { FOOTER_INFO_LINKS } from '@/lib/nav'
 import {
-  canClaimLicensedEstablishment,
   displayOrganizationName,
   getOrganization,
   officialPhoneDisplay,
@@ -13,7 +12,6 @@ import { SITE } from '@/lib/site'
 
 export function Footer() {
   const org = getOrganization()
-  const licensed = canClaimLicensedEstablishment(org)
   const phone = officialPhoneDisplay(org)
   const whatsappUrl = officialWhatsappUrl(org)
   const orderUrl = officialWhatsappOrderUrl()
@@ -26,11 +24,8 @@ export function Footer() {
             <Image src="/images/logo.png" alt="" width={64} height={64} />
             <p>
               {SITE.name} بوابة {displayOrganizationName(org)} لطلب سايتوتك
-              (ميزوبروستول) ولمعلومات الدواء. ليس الموقع الرسمي لشركة فايزر، ولا
+              ولمعلومات الدواء. ليس الموقع الرسمي لشركة فايزر، ولا
               يقدّم تشخيصًا أو جرعات.
-              {licensed
-                ? ' صفة المنشأة المرخّصة تُعرض وفق بيانات الترخيص المُدخلة.'
-                : ' صفة الصيدلية المرخّصة لا تُعرض حتى تكتمل بيانات الترخيص.'}
             </p>
             {orderUrl ? (
               <p>
@@ -42,16 +37,6 @@ export function Footer() {
             <h2>الطلب والمعلومات</h2>
             <ul>
               {FOOTER_INFO_LINKS.map((item) => (
-                <li key={item.href}>
-                  <a href={item.href}>{item.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="footer-links">
-            <h2>الشفافية والسياسات</h2>
-            <ul>
-              {FOOTER_TRUST_LINKS.map((item) => (
                 <li key={item.href}>
                   <a href={item.href}>{item.label}</a>
                 </li>

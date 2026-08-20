@@ -16,9 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:
       path === '/'
         ? 1
-        : path === '/order-cytotec' ||
-            path === '/drug-information' ||
-            path === '/safety'
+        : path === '/order-cytotec' || path === '/drug-information'
           ? 0.9
           : 0.7,
   }))

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { ArticleBody } from '@/components/ArticleBody'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { JsonLd } from '@/components/JsonLd'
-import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
 import { OrderCta } from '@/components/OrderCta'
 import { RelatedArticles } from '@/components/RelatedArticles'
 import { ReferencesList } from '@/components/ReferencesList'
@@ -95,7 +94,7 @@ export default async function ArticlePage({ params }: Props) {
           authorName={author?.name ?? 'هيئة التحرير'}
           authorHref={`/authors/${article.authorSlug}`}
         />
-        <MedicalDisclaimer compact />
+        
         <div className="article-layout">
           <TableOfContents headings={article.headings} />
           <article className="article-shell">
@@ -105,7 +104,6 @@ export default async function ArticlePage({ params }: Props) {
             <p>
               راجع أيضًا{' '}
               <a href="/drug-information">معلومات الدواء</a> و{' '}
-              <a href="/safety">السلامة</a> و{' '}
               <a href="/faq">الأسئلة الشائعة</a> و{' '}
               <a href="/order-cytotec">طلب سايتوتك عبر واتساب</a>.
             </p>

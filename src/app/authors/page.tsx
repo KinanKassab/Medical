@@ -4,9 +4,8 @@ import { AUTHORS } from '@/content/authors'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'هيئة التحرير والمراجعون',
-  description:
-    'دليل الكتّاب والمراجعين على cytotc.com. لا تُعرض أسماء أطباء غير موثّقة. الملف الحالي هو هيئة التحرير فقط.',
+  title: 'هيئة التحرير',
+  description: 'دليل هيئة التحرير على cytotc.com.',
   path: '/authors',
 })
 
@@ -22,8 +21,8 @@ export default function AuthorsPage() {
         />
       </div>
       <PageHero
-        title="هيئة التحرير والمراجعون"
-        lead="نعرض فقط ملفات يمكن الدفاع عنها. لا يوجد حاليًا مراجع طبي مرخّص موثّق."
+        title="هيئة التحرير"
+        lead="الملفات المعروضة هنا تخص فريق تحرير الموقع."
       />
       <section className="content-section">
         <div className="container">
@@ -38,10 +37,6 @@ export default function AuthorsPage() {
               </article>
             ))}
           </div>
-          <p className="owner-todo" style={{ marginTop: '2rem' }}>
-            عند توفر مختص مرخّص موثّق سيُضاف ملف مستقل وفق{' '}
-            <a href="/medical-review-policy">سياسة المراجعة الطبية</a>.
-          </p>
         </div>
       </section>
     </main>

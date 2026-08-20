@@ -31,7 +31,7 @@ export default async function AuthorPage({ params }: Props) {
 
   const personLd = {
     '@context': 'https://schema.org',
-    '@type': author.isLicensedClinician ? 'Person' : 'Organization',
+    '@type': 'Organization',
     name: author.name,
     description: author.bio,
     url: absoluteUrl(`/authors/${author.slug}`),
@@ -54,22 +54,16 @@ export default async function AuthorPage({ params }: Props) {
         <div className="container">
           <article className="prose-page">
             <p>{author.bio}</p>
-            <p>
-              الحالة: {author.isLicensedClinician ? 'مختص مرخّص موثّق' : 'ليست صفة طبية مرخّصة'}
-            </p>
             {author.credentials.length > 0 ? (
               <ul>
                 {author.credentials.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            ) : (
-              <p>لا توجد شهادات أو تراخيص معروضة هنا لأنه لم يُتحقق من أي منها.</p>
-            )}
+            ) : null}
             <p>
               المقالات الحالية تُنسب إلى هيئة التحرير. راجع{' '}
-              <a href="/blog">المدونة</a> و{' '}
-              <a href="/editorial-policy">السياسة التحريرية</a>.
+              <a href="/blog">المدونة</a>.
             </p>
           </article>
         </div>

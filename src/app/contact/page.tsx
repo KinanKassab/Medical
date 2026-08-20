@@ -35,7 +35,8 @@ export default function ContactPage() {
       </div>
       <PageHero
         title="تواصل معنا"
-        lead="الدعم عبر القنوات الرسمية عند توفرها. طلب الدواء يبدأ من واتساب ولا يعني صرفًا تلقائيًا."
+        lead="للطلبات والدعم: يمكنك التواصل معنا عبر القنوات الرسمية المعتمدة أدناه. تبدأ عملية الطلب من خلال واتساب، مع التأكيد أن الصرف لا يتم تلقائيًا قبل المراجعة."
+   
       />
       <section className="contact">
         <div className="container">
@@ -50,7 +51,7 @@ export default function ContactPage() {
                   <Icon name="whatsapp" />
                 </div>
                 <div>
-                  <h2>واتساب الدعم</h2>
+                  <h2>واتساب</h2>
                   {whatsappUrl && phone ? (
                     <>
                       <p>
@@ -58,7 +59,6 @@ export default function ContactPage() {
                           {phone}
                         </a>
                       </p>
-                      <p>للأسئلة الإدارية فقط، وليس لإتمام صرف بدون تحقق.</p>
                     </>
                   ) : (
                     <p>

@@ -18,9 +18,6 @@ export default function NotFound() {
                 <a href="/drug-information">معلومات الدواء</a>
               </li>
               <li>
-                <a href="/safety">السلامة</a>
-              </li>
-              <li>
                 <a href="/faq">الأسئلة الشائعة</a>
               </li>
             </ul>

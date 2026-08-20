@@ -1,24 +1,23 @@
 /**
  * Central site configuration.
  *
- * Organization/license/contact facts live in `organization.ts` and environment
- * variables. Do not hard-code licenses, emails, or WhatsApp numbers here.
+ * Organization and contact facts live in `organization.ts` and environment
+ * variables. Do not hard-code emails or WhatsApp numbers here.
  */
 export const SITE = {
   name: 'cytotc.com',
-  nameAr: 'طلب سايتوتك ومعلومات ميزوبروستول',
+  nameAr: 'طلب سايتوتك ومعلومات',
   shortDescription:
-    'بوابة عربية لطلب سايتوتك (ميزوبروستول) عبر المنشأة المشغّلة، مع معلومات وتحذيرات مستندة إلى مصادر أولية. ليس الموقع الرسمي لشركة فايزر.',
+    'بوابة عربية لطلب سايتوتك عبر المنشأة المشغّلة، مع معلومات وتحذيرات مستندة إلى مصادر أولية. ليس الموقع الرسمي لشركة فايزر.',
   url: 'https://cytotc.com',
   domain: 'cytotc.com',
   locale: 'ar_SA',
   language: 'ar',
   direction: 'rtl' as const,
-  mismatchedEmailDoNotUse: 'support@cytotec.com',
   countryLabel: 'المملكة العربية السعودية',
   countryCode: 'SA',
   copyrightYear: 2026,
-  defaultOgAlt: 'cytotc.com — طلب سايتوتك ومعلومات ميزوبروستول',
+  defaultOgAlt: 'cytotc.com — طلب سايتوتك ومعلومات',
 } as const
 
 export function absoluteUrl(path = '/'): string {
