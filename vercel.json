@@ -1,0 +1,11 @@
+{
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.cytotc.com" }],
+      "destination": "https://cytotc.com/:path*",
+      "permanent": true
+    }
+  ]
+}
