@@ -2,23 +2,25 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { JsonLd } from '@/components/JsonLd'
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
+import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
-import { FAQ_ITEMS } from '@/content/faq'
+import { getFaqItems } from '@/content/faq'
 import { createMetadata } from '@/lib/seo'
 import { absoluteUrl } from '@/lib/site'
 
 export const metadata = createMetadata({
   title: 'الأسئلة الشائعة عن سايتوتك وميزوبروستول',
   description:
-    'إجابات مباشرة: ما هو سايتوتك، وهل cytotc.com موقع رسمي، وهل هو صيدلية، وكيف تتحقق من دواء عبر الهيئة العامة للغذاء والدواء.',
+    'كيف تطلب سايتوتك عبر cytotc.com، وهل الوصفة لازمة، وهل الموقع رسمي لفايزر، وكيف تتحقق من المنشأة ومن الدواء في السعودية.',
   path: '/faq',
 })
 
-function faqJsonLd() {
-  return {
+export default function FaqPage() {
+  const items = getFaqItems()
+  const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {
@@ -28,12 +30,10 @@ function faqJsonLd() {
     })),
     url: absoluteUrl('/faq'),
   }
-}
 
-export default function FaqPage() {
   return (
     <main id="main">
-      <JsonLd data={faqJsonLd()} />
+      <JsonLd data={faqJsonLd} />
       <div className="container">
         <Breadcrumbs
           items={[
@@ -44,17 +44,19 @@ export default function FaqPage() {
       </div>
       <PageHero
         title="الأسئلة الشائعة"
-        lead="أسئلة حقيقية حول هوية الموقع وحول ميزوبروستول، بإجابات محافظة ومستندة إلى مصادر."
+        lead="إجابات عن الطلب المنظّم، والترخيص عند توفره، ومعلومات ميزوبروستول."
       />
       <section className="faq-section">
         <div className="container">
           <MedicalDisclaimer compact />
-          <FaqAccordion />
+          <FaqAccordion items={items} />
           <p>
-            لمعلومات أوسع اقرأ{' '}
-            <a href="/drug-information">صفحة معلومات الدواء</a> و{' '}
+            ابدأ من{' '}
+            <a href="/order-cytotec">طلب سايتوتك</a> أو اقرأ{' '}
+            <a href="/drug-information">معلومات الدواء</a> و{' '}
             <a href="/safety">صفحة السلامة</a>.
           </p>
+          <OrderCta />
         </div>
       </section>
     </main>

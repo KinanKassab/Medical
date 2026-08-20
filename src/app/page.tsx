@@ -2,25 +2,39 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { Icon } from '@/components/Icon'
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
+import { OrderCta } from '@/components/OrderCta'
+import { TrustSection } from '@/components/TrustSection'
+import { WhatsAppOrderCta } from '@/components/WhatsAppOrderCta'
 import { ARTICLES } from '@/content/articles'
+import {
+  canClaimLicensedEstablishment,
+  displayOrganizationName,
+  getOrganization,
+  officialWhatsappOrderUrl,
+} from '@/lib/organization'
 import { createMetadata } from '@/lib/seo'
-import { WHATSAPP_URL } from '@/lib/site'
 
 const homeMeta = createMetadata({
-  title: 'معلومات عن سايتوتك (ميزوبروستول)',
+  title: 'طلب سايتوتك (ميزوبروستول) ومعلومات الدواء',
   description:
-    'موقع عربي معلوماتي عن سايتوتك (ميزوبروستول): ما هو الدواء، تحذيرات السلامة، وكيفية التحقق عبر الهيئة العامة للغذاء والدواء. ليس الموقع الرسمي للشركة المصنعة.',
+    'اطلب سايتوتك (ميزوبروستول) عبر واتساب من cytotc.com، أو اقرأ معلومات الدواء وتحذيرات السلامة من مصادر أولية. الرسالة تبدأ الاستفسار فقط وليست صرفًا تلقائيًا.',
   path: '/',
 })
 
 export const metadata: Metadata = {
   ...homeMeta,
   title: {
-    absolute: 'معلومات عن سايتوتك (ميزوبروستول) | cytotc.com',
+    absolute: 'طلب سايتوتك (ميزوبروستول) ومعلومات الدواء | cytotc.com',
   },
 }
 
 const hubs = [
+  {
+    href: '/order-cytotec',
+    title: 'طلب الدواء',
+    text: 'ابدأ عبر واتساب. الفريق يتحقق من المتطلبات والوصفة عند الحاجة قبل تأكيد التوفر والاعتماد.',
+    icon: 'check' as const,
+  },
   {
     href: '/drug-information',
     title: 'معلومات الدواء',
@@ -36,18 +50,16 @@ const hubs = [
   {
     href: '/faq',
     title: 'الأسئلة الشائعة',
-    text: 'إجابات مباشرة: هل هذا الموقع رسمي؟ هل هو صيدلية؟ وكيف تتحقق من دواء في السعودية.',
+    text: 'كيف يتم الطلب، وهل الوصفة لازمة، وكيف تتحقق من المنشأة ومن الدواء.',
     icon: 'headset' as const,
-  },
-  {
-    href: '/blog',
-    title: 'مقالات تحريرية',
-    text: 'شروح أطول مع مصادر وتاريخ نشر وتحديث.',
-    icon: 'file' as const,
   },
 ]
 
 export default function HomePage() {
+  const org = getOrganization()
+  const licensed = canClaimLicensedEstablishment(org)
+  const orgName = displayOrganizationName(org)
+
   return (
     <main id="main">
       <section className="hero">
@@ -61,18 +73,26 @@ export default function HomePage() {
         />
         <div className="hero-overlay" />
         <div className="container">
-          <h1>معلومات عن سايتوتك (ميزوبروستول)</h1>
+          <p className="hero-kicker">{orgName} — cytotc.com</p>
+          <h1>سايتوتك (ميزوبروستول): طلب منظّم ومعلومات موثّقة</h1>
           <p>
-            سايتوتك اسم تجاري لدواء يحتوي المادة الفعالة ميزوبروستول. هذا الموقع
-            مصدر عربي معلوماتي مستقل. ليس الموقع الرسمي لشركة فايزر، ولا صيدلية
-            مرخّصة موثّقة على هذه الصفحات، ولا يقدّم استشارة طبية.
+            سايتوتك أقراص تحتوي ميزوبروستول. عبر هذا الموقع يمكنك تقديم طلب
+            للدواء من خلال {orgName}، أو قراءة المعلومات والتحذيرات. لسنا الموقع
+            الرسمي لشركة فايزر.
+            {licensed
+              ? ' نعرض صفة المنشأة الدوائية المرخّصة وفق بيانات الترخيص المُدخلة.'
+              : ' صفة «صيدلية مرخّصة» تظهر علنًا فقط بعد إدخال الاسم القانوني ورقم الترخيص وجهة الإصدار.'}
           </p>
           <div className="cta-row">
-            <a className="cta-btn" href="/drug-information">
-              اقرأ معلومات الدواء
-            </a>
-            <a className="cta-btn" href="/safety">
-              تحذيرات السلامة
+            {officialWhatsappOrderUrl() ? (
+              <WhatsAppOrderCta location="homepage-hero" />
+            ) : (
+              <a className="cta-btn-secondary" href="/order-cytotec">
+                شرح كيفية الطلب
+              </a>
+            )}
+            <a className="cta-btn-secondary" href="/drug-information">
+              معلومات الدواء
             </a>
           </div>
         </div>
@@ -82,8 +102,10 @@ export default function HomePage() {
         <div className="container">
           <MedicalDisclaimer />
           <div className="section-title">
-            <h2>ماذا تجد في الموقع؟</h2>
-            <p>صفحات معلوماتية بروابط لمصادر أولية، لا ادعاءات غير موثّقة.</p>
+            <h2>مساران واضحان</h2>
+            <p>
+              الحصول على الدواء عبر طلب موثّق، أو فهم المادة الفعالة ومخاطرها.
+            </p>
           </div>
           <div className="hub-grid">
             {hubs.map((hub) => (
@@ -103,35 +125,35 @@ export default function HomePage() {
 
       <section className="about">
         <div className="container">
-          <div className="section-title">
-            <h2>حدود هذا الموقع</h2>
-          </div>
-          <div className="about-content">
+          <TrustSection heading="المنشأة والترخيص" />
+          <div className="about-content" style={{ marginTop: '2.5rem' }}>
             <div className="about-text">
+              <h2>كيف يعمل الطلب؟</h2>
               <p>
-                نُعيد صياغة ما يمكن توثيقه من نشرات دوائية رسمية ومواقع حكومية،
-                ونوضح الفجوات عندما لا تتوفر معلومة قابلة للتحقق. لا نعرض تقييمات
-                وهمية، ولا ننسب الموقع إلى أي شركة مصنّعة، ولا ندّعي أن منتجًا
-                معيّنًا "أصلي 100٪".
+                اضغط{' '}
+                <a href="/order-cytotec">طلب الدواء عبر واتساب</a> من صفحة
+                الطلب أو من الزر الظاهر عند توفر الرقم الرسمي. بعد الرسالة يتولى
+                فريق المنشأة التحقق من المتطلبات والوصفة عند الحاجة، ثم تأكيد
+                التوفر والسعر، ثم الاعتماد والدفع والتسليم. الرسالة لا تعني
+                صرفًا تلقائيًا.
               </p>
               <p>
-                للتحقق من تسجيل دواء داخل السعودية استخدم{' '}
-                <a href="https://sdi.sfda.gov.sa/Home/DrugSearch" rel="noopener noreferrer" target="_blank">
+                للمحتوى العلمي راجع{' '}
+                <a href="/drug-information">معلومات ميزوبروستول</a> و{' '}
+                <a href="/safety">صفحة السلامة</a>. للتحقق من تسجيل دواء في
+                السعودية استخدم{' '}
+                <a
+                  href="https://sdi.sfda.gov.sa/Home/DrugSearch"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   نظام معلومات الأدوية السعودي
-                </a>{' '}
-                وموقع{' '}
-                <a href="https://www.sfda.gov.sa/" rel="noopener noreferrer" target="_blank">
-                  الهيئة العامة للغذاء والدواء
                 </a>
                 .
               </p>
               <p>
-                للاستفسار العام يمكن{' '}
-                <a href="/contact">زيارة صفحة التواصل</a> أو المراسلة عبر{' '}
-                <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
-                  واتساب
-                </a>
-                . الرسائل عبر التطبيقات ليست بديلاً عن رعاية طبية مرخّصة.
+                تعريف أوسع بالمنشأة في{' '}
+                <a href="/about">صفحة عن المنشأة</a>.
               </p>
             </div>
             <Image
@@ -148,9 +170,10 @@ export default function HomePage() {
 
       <section className="blog-section">
         <div className="container">
-          <div className="section-title">
-            <h2>أحدث الشروح التحريرية</h2>
-            <p>مقالات محدودة العدد، مكتوبة للإجابة على أسئلة حقيقية.</p>
+          <OrderCta />
+          <div className="section-title" style={{ marginTop: '3rem' }}>
+            <h2>شروح تحريرية</h2>
+            <p>مقالات محدودة العدد للإجابة على أسئلة حقيقية.</p>
           </div>
           <div className="posts-grid">
             {ARTICLES.map((article) => (

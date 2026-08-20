@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import { PRIMARY_NAV } from '@/lib/nav'
+import { officialWhatsappOrderUrl } from '@/lib/organization'
 import { SITE } from '@/lib/site'
 import { MobileNav } from '@/components/MobileNav'
 import { NavLink } from '@/components/NavLink'
+import { WhatsAppOrderCta } from '@/components/WhatsAppOrderCta'
 
 export function Header() {
+  const whatsappOrderUrl = officialWhatsappOrderUrl()
+
   return (
     <header className="site-header">
       <div className="header">
@@ -18,6 +22,9 @@ export function Header() {
             />
             <p className="logo-text">{SITE.name}</p>
           </a>
+          {whatsappOrderUrl ? (
+            <WhatsAppOrderCta className="header-cta" location="header" />
+          ) : null}
         </div>
       </div>
       <nav className="navbar" aria-label="التنقل الرئيسي">
@@ -31,7 +38,7 @@ export function Header() {
               ))}
             </ul>
           </div>
-          <MobileNav />
+          <MobileNav whatsappOrderUrl={whatsappOrderUrl} />
         </div>
       </nav>
     </header>

@@ -1,16 +1,25 @@
-import { DISPLAY_PHONE, WHATSAPP_URL } from '@/lib/site'
+import {
+  getOrganization,
+  officialPhoneDisplay,
+  officialWhatsappOrderUrl,
+} from '@/lib/organization'
 import { Icon } from '@/components/Icon'
+import { WhatsAppOrderButton } from '@/components/WhatsAppOrderButton'
 
 export function WhatsAppButton() {
+  const org = getOrganization()
+  const href = officialWhatsappOrderUrl(org)
+  const phone = officialPhoneDisplay(org)
+  if (!href || !phone) return null
+
   return (
-    <a
+    <WhatsAppOrderButton
+      href={href}
       className="whatsapp-icon show"
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`التواصل عبر واتساب على ${DISPLAY_PHONE}`}
+      location="floating"
     >
+      <span className="sr-only">طلب الدواء عبر واتساب</span>
       <Icon name="whatsapp" />
-    </a>
+    </WhatsAppOrderButton>
   )
 }

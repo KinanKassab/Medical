@@ -1,5 +1,6 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
+import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
 import { ReferencesList } from '@/components/ReferencesList'
 import { REFERENCES } from '@/content/references'
@@ -72,12 +73,14 @@ export default function DrugInformationPage() {
               .
             </p>
             <p>
-              لمزيد من الشرح راجع مقال{' '}
+              ابدأ طلبًا منظّمًا من{' '}
+            <a href="/order-cytotec">صفحة طلب سايتوتك</a> أو لمزيد من الشرح راجع مقال{' '}
               <a href="/blog/ma-huwa-cytotec-misoprostol">
                 ما هو سايتوتك (ميزوبروستول)؟
               </a>
               .
             </p>
+            <OrderCta />
             <ReferencesList
               references={[
                 REFERENCES.dailymedCytotec,

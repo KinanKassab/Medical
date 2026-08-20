@@ -1,19 +1,31 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { WHATSAPP_URL } from '@/lib/site'
 
-export function ContactForm() {
+export function ContactForm({ whatsappUrl }: { whatsappUrl: string | null }) {
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (!whatsappUrl) return
     const text = `الاسم: ${name}\nالرسالة: ${message}`
     window.open(
-      `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`,
+      `${whatsappUrl}?text=${encodeURIComponent(text)}`,
       '_blank',
       'noopener,noreferrer',
+    )
+  }
+
+  if (!whatsappUrl) {
+    return (
+      <div className="contact-form">
+        <p>
+          نموذج رسائل واتساب غير مفعّل حتى يُدخل الرقم الرسمي. لطلب الدواء
+          راجع{' '}
+          <a href="/order-cytotec">صفحة طلب سايتوتك</a>.
+        </p>
+      </div>
     )
   }
 
@@ -44,7 +56,8 @@ export function ContactForm() {
         />
       </div>
       <p className="form-help">
-        سيُفتح واتساب برسالتك. لا نحتفظ بنموذج على الخادم في الإصدار الحالي.
+        هذا النموذج يفتح واتساب لرسالة دعم حرّة. لبدء طلب الدواء استخدم{' '}
+        <a href="/order-cytotec">طلب الدواء عبر واتساب</a>.
       </p>
       <button className="submit-btn" type="submit">
         متابعة عبر واتساب

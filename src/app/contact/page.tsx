@@ -1,18 +1,28 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { ContactForm } from '@/components/ContactForm'
 import { Icon } from '@/components/Icon'
+import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
+import {
+  getOrganization,
+  officialPhoneDisplay,
+  officialWhatsappUrl,
+} from '@/lib/organization'
 import { createMetadata } from '@/lib/seo'
-import { DISPLAY_PHONE, SITE, WHATSAPP_URL } from '@/lib/site'
+import { SITE } from '@/lib/site'
 
 export const metadata = createMetadata({
   title: 'تواصل معنا',
   description:
-    'بيانات التواصل المتاحة حاليًا لموقع cytotc.com: واتساب مذكور على الموقع. البريد على نطاق cytotc.com غير مؤكد بعد، ولا نعرض عنوانًا على نطاق مختلف.',
+    'قنوات الدعم الرسمية لـ cytotc.com عند توفرها. طلب سايتوتك يبدأ بزر واتساب، والدعم النصي لا يتجاوز المراجعة النظامية.',
   path: '/contact',
 })
 
 export default function ContactPage() {
+  const org = getOrganization()
+  const phone = officialPhoneDisplay(org)
+  const whatsappUrl = officialWhatsappUrl(org)
+
   return (
     <main id="main">
       <div className="container">
@@ -25,28 +35,37 @@ export default function ContactPage() {
       </div>
       <PageHero
         title="تواصل معنا"
-        lead="نعرض فقط قنوات يمكن ربطها بالموقع الحالي. الرسائل ليست استشارة طبية."
+        lead="الدعم عبر القنوات الرسمية عند توفرها. طلب الدواء يبدأ من واتساب ولا يعني صرفًا تلقائيًا."
       />
       <section className="contact">
         <div className="container">
-          <div className="contact-content">
+          <OrderCta
+            title="لطلب الدواء عبر واتساب"
+            text="اضغط الزر لفتح محادثة بطلب جاهز. التحقق والاعتماد بعد ذلك مع الفريق."
+          />
+          <div className="contact-content" style={{ marginTop: '2rem' }}>
             <div className="contact-info">
               <div className="contact-item">
                 <div className="contact-icon">
                   <Icon name="whatsapp" />
                 </div>
                 <div>
-                  <h2>واتساب</h2>
-                  <p>
-                    <a href={WHATSAPP_URL} rel="noopener noreferrer" target="_blank">
-                      {DISPLAY_PHONE}
-                    </a>
-                  </p>
-                  <p>
-                    الرقم مأخوذ من المحتوى الظاهر سابقًا على الموقع. يجب أن يؤكد
-                    المشغّل أنه ما زال الرقم الصحيح؛ وُجد رقم مختلف داخل ملف
-                    جافاسكربت القديم ولم يُعرض هنا.
-                  </p>
+                  <h2>واتساب الدعم</h2>
+                  {whatsappUrl && phone ? (
+                    <>
+                      <p>
+                        <a href={whatsappUrl} rel="noopener noreferrer" target="_blank">
+                          {phone}
+                        </a>
+                      </p>
+                      <p>للأسئلة الإدارية فقط، وليس لإتمام صرف بدون تحقق.</p>
+                    </>
+                  ) : (
+                    <p>
+                      لم يُدخل بعد رقم واتساب رسمي في إعدادات المنشأة. لن نعرض
+                      رقمًا قديمًا غير مؤكد.
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="contact-item">
@@ -55,10 +74,29 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h2>البريد الإلكتروني</h2>
-                  <p>
-                    لا نعرض عنوانًا على نطاق cytotec.com لأن نطاق الموقع هو{' '}
-                    {SITE.domain}. لم يُؤكَّد بعد صندوق بريد على هذا النطاق.
-                  </p>
+                  {org.officialEmail ? (
+                    <p>
+                      <a href={`mailto:${org.officialEmail}`}>{org.officialEmail}</a>
+                    </p>
+                  ) : (
+                    <p>
+                      لا نعرض عنوانًا على نطاق مختلف عن {SITE.domain}. أدخل
+                      البريد الرسمي في الإعدادات بعد التحقق من السيطرة عليه.
+                    </p>
+                  )}
+                </div>
+              </div>
+              <div className="contact-item">
+                <div className="contact-icon">
+                  <Icon name="phone" />
+                </div>
+                <div>
+                  <h2>الهاتف</h2>
+                  {org.officialPhone ? (
+                    <p>{org.officialPhone}</p>
+                  ) : (
+                    <p>الهاتف الرسمي غير مُدخل بعد.</p>
+                  )}
                 </div>
               </div>
               <div className="contact-item">
@@ -67,14 +105,18 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h2>العنوان</h2>
-                  <p>
-                    لم يتوفر عنوان مقرّ يمكن التحقق منه. ذُكرت {SITE.countryLabel}{' '}
-                    كسياق جغرافي للمحتوى فقط، دون إحداثيات أو حي.
-                  </p>
+                  {org.physicalAddress ? (
+                    <p>{org.physicalAddress}</p>
+                  ) : (
+                    <p>
+                      لم يتوفر عنوان مقرّ يمكن التحقق منه. السياق الجغرافي
+                      للمحتوى: {SITE.countryLabel}.
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
-            <ContactForm />
+            <ContactForm whatsappUrl={whatsappUrl} />
           </div>
         </div>
       </section>

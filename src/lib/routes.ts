@@ -4,6 +4,7 @@ import { AUTHORS } from '@/content/authors'
 export const STATIC_INDEXABLE_PATHS = [
   '/',
   '/about',
+  '/order-cytotec',
   '/drug-information',
   '/safety',
   '/faq',

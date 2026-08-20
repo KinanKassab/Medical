@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'معلومات عن سايتوتك (ميزوبروستول) | cytotc.com',
+    default: 'طلب سايتوتك (ميزوبروستول) ومعلومات الدواء | cytotc.com',
     template: '%s | cytotc.com',
   },
   description: SITE.shortDescription,

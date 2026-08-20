@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
       { source: '/terms-of-service', destination: '/terms', permanent: true },
       { source: '/faq.html', destination: '/faq', permanent: true },
       { source: '/blog.html', destination: '/blog', permanent: true },
+      { source: '/order', destination: '/order-cytotec', permanent: true },
+      { source: '/order/', destination: '/order-cytotec', permanent: true },
     ]
   },
   async headers() {

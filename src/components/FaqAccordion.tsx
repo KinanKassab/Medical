@@ -1,15 +1,15 @@
 'use client'
 
-import { FAQ_ITEMS } from '@/content/faq'
+import type { FaqItem } from '@/content/faq'
 import { Icon } from '@/components/Icon'
 import { useState } from 'react'
 
-export function FaqAccordion() {
+export function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
     <div className="faq-list">
-      {FAQ_ITEMS.map((item, index) => {
+      {items.map((item, index) => {
         const open = openIndex === index
         const panelId = `faq-panel-${index}`
         const buttonId = `faq-button-${index}`

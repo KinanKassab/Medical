@@ -4,8 +4,13 @@ import { useEffect, useState } from 'react'
 import { PRIMARY_NAV } from '@/lib/nav'
 import { Icon } from '@/components/Icon'
 import { NavLink } from '@/components/NavLink'
+import { WhatsAppOrderButton } from '@/components/WhatsAppOrderButton'
 
-export function MobileNav() {
+export function MobileNav({
+  whatsappOrderUrl,
+}: {
+  whatsappOrderUrl: string | null
+}) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -28,6 +33,16 @@ export function MobileNav() {
         <span className="sr-only">{open ? 'إغلاق القائمة' : 'فتح القائمة'}</span>
       </button>
       <ul id="primary-nav" className={open ? 'show' : undefined}>
+        {whatsappOrderUrl ? (
+          <li className="mobile-order-cta">
+            <WhatsAppOrderButton
+              href={whatsappOrderUrl}
+              className="header-cta"
+              location="mobile-nav"
+              onNavigate={() => setOpen(false)}
+            />
+          </li>
+        ) : null}
         {PRIMARY_NAV.map((item) => (
           <li key={item.href}>
             <NavLink href={item.href} onClick={() => setOpen(false)}>

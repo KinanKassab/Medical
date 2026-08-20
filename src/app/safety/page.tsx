@@ -1,5 +1,6 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { MedicalDisclaimer } from '@/components/MedicalDisclaimer'
+import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
 import { ReferencesList } from '@/components/ReferencesList'
 import { REFERENCES } from '@/content/references'
@@ -74,8 +75,11 @@ export default function SafetyPage() {
                 تحذيرات الحمل وفق النشرة الرسمية
               </a>
               . للتعريف العام راجع{' '}
-              <a href="/drug-information">معلومات الدواء</a>.
+              <a href="/drug-information">معلومات الدواء</a>. للحصول على الدواء
+              عبر مسار تحقق استخدم{' '}
+              <a href="/order-cytotec">طلب سايتوتك</a>.
             </p>
+            <OrderCta />
             <ReferencesList
               references={[
                 REFERENCES.dailymedCytotec,

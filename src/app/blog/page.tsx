@@ -1,4 +1,5 @@
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { OrderCta } from '@/components/OrderCta'
 import { PageHero } from '@/components/PageHero'
 import { ARTICLES } from '@/content/articles'
 import { createMetadata } from '@/lib/seo'
@@ -27,6 +28,7 @@ export default function BlogPage() {
       />
       <section className="blog-section">
         <div className="container">
+          <OrderCta />
           <div className="posts-grid">
             {ARTICLES.map((article) => (
               <article className="post-card" key={article.slug}>
