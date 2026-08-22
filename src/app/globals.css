@@ -80,18 +80,16 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.header {
-  background-color: #fff;
-  box-shadow: var(--box-shadow);
-  padding: 0.75rem 0;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .header-inner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 4.5rem;
 }
 
 .logo {
@@ -99,62 +97,77 @@ a:hover {
   align-items: center;
   text-decoration: none;
   color: inherit;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
 }
 
 .logo-text {
-  font-size: 1.35rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
+  white-space: nowrap;
 }
 
-.navbar {
-  background: #fff;
-  padding: 0.4rem 0 0.75rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+.desktop-nav {
+  flex: 1;
+  min-width: 0;
 }
 
-.navbar-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.desktop-nav ul,
-.navbar ul {
+.desktop-nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 0.15rem;
 }
 
-.navbar a {
+.desktop-nav a {
   text-decoration: none;
   color: var(--text-color);
-  padding: 0.7rem 1rem;
+  padding: 0.5rem 0.7rem;
   font-weight: 600;
+  font-size: 0.95rem;
   border-radius: var(--border-radius);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
+  white-space: nowrap;
 }
 
-.navbar a:hover,
-.navbar a.active {
+.desktop-nav a:hover,
+.desktop-nav a.active {
   background: var(--primary-strong);
   color: #fff;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
 .mobile-menu-btn {
   display: none;
-  background: none;
+  background: #f3f5f4;
   border: 0;
-  font-size: 1.6rem;
+  font-size: 1.45rem;
   cursor: pointer;
   color: var(--text-color);
   min-width: 44px;
   min-height: 44px;
+  border-radius: var(--border-radius);
   align-items: center;
   justify-content: center;
+}
+
+#primary-nav {
+  display: none;
 }
 
 /* Hero */
@@ -759,16 +772,18 @@ th {
   .hero h1 {
     font-size: 2.1rem;
   }
-}
 
-@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
   .mobile-menu-btn {
     display: inline-flex;
     position: relative;
     z-index: 1102;
   }
 
-  .desktop-nav {
+  .mobile-menu-btn[hidden] {
     display: none;
   }
 
@@ -783,16 +798,20 @@ th {
   }
 
   #primary-nav {
+    display: flex;
     position: fixed;
     top: 0;
     right: -100%;
-    width: min(80%, 320px);
+    width: min(82%, 320px);
     height: 100%;
     height: 100dvh;
+    margin: 0;
+    list-style: none;
     background: #fff;
     flex-direction: column;
     align-items: stretch;
-    padding: 4.5rem 1.2rem 2rem;
+    gap: 0.25rem;
+    padding: 4.25rem 1.2rem 2rem;
     transition: right 0.25s ease;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 1101;
@@ -803,10 +822,27 @@ th {
     right: 0;
   }
 
+  #primary-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  #primary-nav a:hover,
+  #primary-nav a.active {
+    background: var(--primary-strong);
+    color: #fff;
+  }
+
   .mobile-nav-close-item {
     position: absolute;
     top: 0.75rem;
-    left: 0.75rem;
+    inset-inline-start: 0.75rem;
     list-style: none;
   }
 
@@ -816,13 +852,16 @@ th {
     justify-content: center;
     min-width: 44px;
     min-height: 44px;
-    background: none;
+    background: #f3f5f4;
     border: 0;
-    font-size: 1.6rem;
+    border-radius: var(--border-radius);
+    font-size: 1.45rem;
     cursor: pointer;
     color: var(--text-color);
   }
+}
 
+@media (max-width: 768px) {
   .hero {
     padding: 4.5rem 0;
   }
@@ -832,11 +871,11 @@ th {
   }
 
   .header-cta {
-    padding: 0.55rem 0.7rem;
+    padding: 0.5rem 0.8rem;
     font-size: 0.82rem;
+    max-width: 9.5rem;
     white-space: normal;
     line-height: 1.3;
-    max-width: 10.5rem;
     text-align: center;
   }
 
@@ -845,9 +884,13 @@ th {
   }
 }
 
-@media (min-width: 769px) {
-  #primary-nav {
-    display: none !important;
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+
+  .header-cta {
+    max-width: 10rem;
   }
 }
 
@@ -862,7 +905,7 @@ th {
 }
 
 @media print {
-  .navbar,
+  .site-header,
   .footer,
   .whatsapp-icon,
   .cta-btn,

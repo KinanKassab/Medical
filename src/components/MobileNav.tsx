@@ -39,10 +39,11 @@ export function MobileNav({
         className="mobile-menu-btn"
         aria-expanded={open}
         aria-controls="primary-nav"
-        onClick={() => setOpen((value) => !value)}
+        hidden={open}
+        onClick={() => setOpen(true)}
       >
-        <Icon name={open ? 'close' : 'menu'} />
-        <span className="sr-only">{open ? 'إغلاق القائمة' : 'فتح القائمة'}</span>
+        <Icon name="menu" />
+        <span className="sr-only">فتح القائمة</span>
       </button>
       {open ? (
         <button

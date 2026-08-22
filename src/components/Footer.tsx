@@ -24,8 +24,7 @@ export function Footer() {
             <Image src="/images/logo.png" alt="" width={64} height={64} />
             <p>
               {SITE.name} بوابة {displayOrganizationName(org)} لطلب سايتوتك
-              ولمعلومات الدواء. ليس الموقع الرسمي لشركة فايزر، ولا
-              يقدّم تشخيصًا أو جرعات.
+              ولمعلومات الدواء.
             </p>
             {orderUrl ? (
               <p>
@@ -73,8 +72,7 @@ export function Footer() {
         </div>
         <div className="footer-bottom">
           <p>
-            © {SITE.copyrightYear} {displayOrganizationName(org)}. Cytotec علامة
-            تجارية تخص مالكتها، واستخدام الاسم هنا للتعريف بالدواء والخدمة فقط.
+            © {SITE.copyrightYear} {displayOrganizationName(org)}. Cytotc.com
           </p>
         </div>
       </div>

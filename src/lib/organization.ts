@@ -29,9 +29,6 @@ export type OrganizationConfig = {
   officialWhatsapp: string | null
   officialEmail: string | null
   registeredPresentation: string | null
-  currentPrice: string | null
-  priceCurrency: string | null
-  availabilityNote: string | null
   prescriptionRequired: boolean
 }
 
@@ -43,9 +40,6 @@ export function getOrganization(): OrganizationConfig {
     officialWhatsapp: digitsOnly(readPublic('NEXT_PUBLIC_OFFICIAL_WHATSAPP')),
     officialEmail: readPublic('NEXT_PUBLIC_OFFICIAL_EMAIL'),
     registeredPresentation: readPublic('NEXT_PUBLIC_REGISTERED_PRESENTATION'),
-    currentPrice: readPublic('NEXT_PUBLIC_CURRENT_PRICE'),
-    priceCurrency: readPublic('NEXT_PUBLIC_PRICE_CURRENCY') ?? 'SAR',
-    availabilityNote: readPublic('NEXT_PUBLIC_AVAILABILITY_NOTE'),
     prescriptionRequired:
       (process.env.NEXT_PUBLIC_PRESCRIPTION_REQUIRED ?? 'true').toLowerCase() !==
       'false',
